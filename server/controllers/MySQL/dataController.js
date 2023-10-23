@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { fr } from 'date-fns/locale';
 import { format, parseISO } from 'date-fns';
-import Match from '@models/MySQL/Match';
-import ErrorService from '@services/errorService';
+import Match from '../../models/MySQL/Match';
+import ErrorService from '../../services/errorService';
 
 const matchesUrl = process.env.MATCHES_URI;
 

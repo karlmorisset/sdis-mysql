@@ -1,6 +1,10 @@
-import User from '@models/MySQL/User';
-import ErrorService from '@services/errorService';
-import { setTokenCookie, createToken, deleteTokenCookie } from '@services/jwt';
+import User from '../../models/MySQL/User';
+import ErrorService from '../../services/errorService';
+import {
+  setTokenCookie,
+  createToken,
+  deleteTokenCookie,
+} from '../../services/jwt';
 
 /**
  * Permet d'afficher la page de création d'un utilisateur

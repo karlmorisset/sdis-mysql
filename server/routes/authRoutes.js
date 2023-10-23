@@ -5,8 +5,8 @@ import {
   logout,
   register,
   signUp,
-} from '@controllers/MySQL/authController';
-import { getUser } from '../controllers/MySQL/authController';
+  getUser,
+} from '../controllers/MySQL/authController';
 
 const router = new express.Router();
 

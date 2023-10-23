@@ -1,7 +1,7 @@
 import { DataTypes } from 'sequelize';
 import bcrypt from 'bcrypt';
-import { sequelize } from '@app/config/db/mysql';
-import ValidationErrorSQL from '@app/exceptions/ValidationErrorSQL';
+import { sequelize } from '../../config/db/mysql';
+import ValidationErrorSQL from '../../exceptions/ValidationErrorSQL';
 
 async function encryptPassword(user) {
   const salt = await bcrypt.genSalt();

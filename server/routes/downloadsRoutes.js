@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import index from '@controllers/AppController';
-import { requireAuth } from '@app/middleware/MySQL/authMiddleware';
+import index from '../controllers/AppController';
+import { requireAuth } from '../middleware/MySQL/authMiddleware';
 
 const router = Router();
 

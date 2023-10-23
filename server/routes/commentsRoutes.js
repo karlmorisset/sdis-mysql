@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import { store, destroy, update } from '@controllers/MySQL/commentController';
-import { requireAuth } from '@app/middleware/MySQL/authMiddleware';
+import { store, destroy, update } from '../controllers/MySQL/commentController';
+import { requireAuth } from '../middleware/MySQL/authMiddleware';
 
 const router = Router();
 

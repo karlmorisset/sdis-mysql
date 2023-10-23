@@ -6,7 +6,6 @@ import { checkUser } from './server/middleware/MySQL/authMiddleware';
 // import connectDB from './server/config/db/mongodb';
 import router from './server/routes/router';
 import { connectMYSQL } from './server/config/db/mysql';
-import MatchSockets from './server/middleware/SocketsMiddleware';
 import { Server } from 'socket.io';
 
 // Initilisation du serveur
@@ -26,7 +25,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(checkUser);
 
-// app.use(MatchSockets(httpServer));
 const io = new Server(httpServer);
 
 io.on('connection', (socket) => {
@@ -38,22 +36,6 @@ io.on('connection', (socket) => {
     io.sockets.emit('removeComment', data);
   });
 });
-// app.use((req, res, next) => {
-//   const io = new Server(httpServer);
-
-//   console.log('in MatchSockets middleware');
-
-//   io.on('connection', (socket) => {
-//     socket.on('newComment', (data) => {
-//       io.sockets.emit('newComment', { ...data, user: res.locals.user.id });
-//     });
-//     socket.on('removeComment', (data) => {
-//       io.sockets.emit('removeComment', data);
-//     });
-//   });
-
-//   next();
-// });
 
 // Toutes les routes de l'application
 app.use('/matches', router.matches);

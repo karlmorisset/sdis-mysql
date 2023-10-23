@@ -1,4 +1,4 @@
-import ValidationErrorItem from '@app/exceptions/ValidationErrorItem';
+import ValidationErrorItem from './ValidationErrorItem';
 
 export default class ValidationErrorSQL extends Error {
   constructor(message, data) {

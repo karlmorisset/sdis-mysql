@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import User from '@models/MySQL/User';
+import User from '../../models/MySQL/User';
 
 export const requireAuth = (req, res, next) => {
   const token = req.cookies.jwt;
@@ -23,17 +23,24 @@ export const checkUser = (req, res, next) => {
     next();
   } else {
     jwt.verify(token, process.env.JWT_SALT, async (err, decodedToken) => {
-      if (err) {
-        res.locals.user = null;
+      try {
+        if (err || !decodedToken) {
+          res.locals.user = null;
+          throw new Error('Invalid Token');
+        }
+
+        const user = await User.findByPk(decodedToken.id);
+        if (user) {
+          res.locals.user = {
+            id: user.id,
+            email: user.email,
+          };
+        }
+      } catch (error) {
+        console.warn(error.message);
+      } finally {
         next();
       }
-
-      const user = await User.findByPk(decodedToken.id);
-      res.locals.user = {
-        id: user.id,
-        email: user.email,
-      };
-      next();
     });
   }
 };

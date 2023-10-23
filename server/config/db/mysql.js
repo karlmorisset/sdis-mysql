@@ -21,7 +21,7 @@ export const connectMYSQL = async () => {
   const sequelize = getSequelize();
 
   await sequelize.authenticate();
-  console.warn('Connecté à MySQL');
+  console.log('Connecté à MySQL');
 };
 
 export const sequelize = getSequelize();

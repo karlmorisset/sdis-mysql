@@ -1,7 +1,7 @@
-import ErrorService from '@app/services/errorService';
-import Match from '@models/MySQL/Match';
-import User from '@models/MySQL/User';
-import Comment from '@models/MySQL/Comment';
+import ErrorService from '../../services/errorService';
+import Match from '../../models/MySQL/Match';
+import User from '../../models/MySQL/User';
+import Comment from '../../models/MySQL/Comment';
 
 export const index = async (req, res) => {
   try {

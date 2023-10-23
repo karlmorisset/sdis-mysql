@@ -1,13 +1,13 @@
 import { Router } from 'express';
-import { updateDataFromAPI } from '@controllers/MySQL/dataController';
+import { updateDataFromAPI } from '../controllers/MySQL/dataController';
 import {
   getPlayedMatches,
   getScheduledMatches,
   index,
   show,
-} from '@controllers/MySQL/matchesController';
+} from '../controllers/MySQL/matchesController';
 
-import { requireAuth } from '@app/middleware/MySQL/authMiddleware';
+import { requireAuth } from '../middleware/MySQL/authMiddleware';
 
 const router = Router();
 

@@ -1,4 +1,4 @@
-import ErrorService from '@services/errorService';
+import ErrorService from '../services/errorService';
 
 const index = async (req, res) => {
   const file = 'RWC-2023_Calendrier_FRE.pdf';

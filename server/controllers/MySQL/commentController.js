@@ -1,7 +1,7 @@
-import Comment from '@models/MySQL/Comment';
-import Match from '@models/MySQL/Match';
-import User from '@models/MySQL/User';
-import ErrorService from '@services/errorService';
+import Comment from '../../models/MySQL/Comment';
+import Match from '../../models/MySQL/Match';
+import User from '../../models/MySQL/User';
+import ErrorService from '../../services/errorService';
 
 /**
  * Ajoute un commentaire

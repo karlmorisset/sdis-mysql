@@ -1,6 +1,6 @@
 import { DataTypes } from 'sequelize';
-import User from '@models/MySQL/User';
-import Match from '@models/MySQL/Match';
+import User from './User';
+import Match from './Match';
 import { sequelize } from '../../config/db/mysql';
 
 const Comment = sequelize.define(
