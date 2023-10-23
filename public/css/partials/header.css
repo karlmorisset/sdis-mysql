@@ -1,0 +1,30 @@
+.header {
+  --header-height: 80px;
+  height: var(--header-height);
+  box-shadow: 0px 6px 4px -4px var(--clr-dark-blue);
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+
+.logo {
+  height: var(--header-height);
+}
+
+.header img.logo-rwc {
+  height: 100%;
+  width: auto;
+}
+
+.header__nav ul {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.header__nav ul li {
+  text-align: center;
+}

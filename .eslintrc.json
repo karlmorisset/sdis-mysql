@@ -1,0 +1,54 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true,
+        "node": true
+    },
+    "root": true,
+    "extends": "airbnb-base",
+    "plugins": ["import"],
+    "settings": {
+        "func-names": ["error", "as-needed"],
+        "implicit-arrow-linebreak": ["error", "below"],
+        "import/no-extraneous-dependencies": [
+            "error",
+            {
+                "devDependencies": ["test/**"],
+                "optionalDependencies": false,
+                "peerDependencies": false,
+                "packageDir": "/"
+            }
+        ],
+        "import/resolver": {
+            "eslint-import-resolver-custom-alias": {
+              "alias": {
+                "@controllers": "./server/controllers",
+                "@app": "./server",
+                "@models": "./server/models",
+                "@services": "./server/services"
+              },
+              "extensions": [".js"]
+            }
+          }
+    },
+    "parserOptions": {
+        "ecmaVersion": 2020,
+        "sourceType": "module"
+    },
+    "rules": {
+        "arrow-parens": "off",
+        "camelcase": "error",
+        "comma-dangle": "off",
+        "consistent-return": "off",
+        "function-paren-newline": "off",
+        "implicit-arrow-linebreak": "off",
+        "indent": "off",
+        "no-restricted-globals": "off",
+        "no-return-assign": "off",
+        "no-console": ["error", { "allow": ["warn", "error", "dir", "debug"] }],
+        "no-unused-vars": "error",
+        "object-curly-newline": "off",
+        "operator-linebreak": "off",
+        "prefer-arrow-callback": "error"
+    }
+}

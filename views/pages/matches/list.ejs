@@ -1,0 +1,24 @@
+<% matches.forEach(match => { %>
+  <a href="/matches/show/<%- match.id %>">
+    <div class="card <% if (match.played) { %> played <% } %>">
+      <div class="teams">
+        <%- match.formated.teams %>
+      </div>
+
+      <% if (match.played) { %>
+        <div class="scores">
+          <%- match.formated.scores %>
+        </div>
+
+      <% } %>
+
+      <div class="date">
+        <%- match.formated.date %>
+      </div>
+
+      <div class="venue">
+        <%- match.formated.venue %>
+      </div>
+    </div>
+  </a>
+<% }) %>

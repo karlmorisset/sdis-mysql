@@ -1,0 +1,6 @@
+.footer {
+  border-top: 1px solid var(--clr-dark-blue);
+  height: 40px;
+  display: flex;
+  align-items: center;
+}

@@ -1,0 +1,27 @@
+<!-- Script du module -->
+<script type="text/javascript" type="module" src="/js/auth/logout.js" defer></script>
+
+<header class="header">
+  <div class="logo">
+    <a href="/matches"><img class="logo-rcw" src="/img/rwc2023-logo-symbol.svg" width="80" alt=""></a>
+  </div>
+
+  <nav class="header__nav">
+    <ul>
+      <li><a href="/matches">Accueil</a></li>
+      <li><a href="/matches/played">Les matchs joués</a></li>
+      <li><a href="/matches/scheduled">Les matchs programmés</a></li>
+      <li><a href="/auth/signup">Créer un utilisateur</a></li>
+
+      <% if (typeof user == 'object' && user) { %>
+        <li><%= user.email %></li>
+        <li><form id="logout"><button type="submit" class="btn-link logout">Se déconnecter</button></form></li>
+        <% } else { %>
+          <li><a href="/auth/login">Se connecter</a></li>
+      <% } %>
+
+      <li><a href="/matches/update">Mise à jour des données</a></li>
+      <li><form action="/downloads"><button type="submit" class="btn-link">Télécharger le calendrier</button></form></li>
+    </ul>
+  </nav>
+</header>

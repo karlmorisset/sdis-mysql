@@ -1,0 +1,22 @@
+:root {
+  --clr-primary-blue: #353cff;
+  --clr-white: #fff;
+  --clr-red: #f43003;
+  --clr-dark-blue: #191a4b;
+  --clr-lime: #78dcaa;
+}
+
+.white {
+  color: var(--clr-white);
+}
+.lime {
+  color: var(--clr-lime);
+}
+
+.dark-blue {
+  color: var(--clr-dark-blue);
+}
+
+.red {
+  color: var(--clr-red);
+}

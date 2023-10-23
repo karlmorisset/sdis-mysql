@@ -1,0 +1,55 @@
+{
+  "name": "express",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon --loader esm-module-alias/loader --ext js,ejs,ts,css --experimental-modules --es-module-specifier-resolution=node index.js",
+    "pm2": "pm2 start index.js --node-args='--experimental-modules --es-module-specifier-resolution=node index.js'",
+    "scan": "npx eslint .",
+    "fix": "npx eslint . --fix",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.5.1",
+    "bcrypt": "^5.1.1",
+    "browserslist": "^4.22.1",
+    "caniuse-lite": "^1.0.30001542",
+    "connect-livereload": "^0.6.1",
+    "cookie-parser": "^1.4.6",
+    "date-fns": "^2.30.0",
+    "dotenv": "^16.3.1",
+    "ejs": "^3.1.9",
+    "eslint-import-resolver-alias": "^1.1.2",
+    "eslint-import-resolver-custom-alias": "^1.3.2",
+    "esm-module-alias": "^2.0.3",
+    "express": "^4.18.2",
+    "express-ejs-layouts": "^2.5.1",
+    "jsonwebtoken": "^9.0.2",
+    "livereload": "^0.9.3",
+    "module-alias": "^2.2.3",
+    "mongodb": "^6.1.0",
+    "mongoose": "^7.5.3",
+    "mysql2": "^3.6.1",
+    "sequelize": "^6.33.0",
+    "socket.io": "^4.7.2",
+    "validator": "^13.11.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.50.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.28.1",
+    "prettier": "^3.0.3"
+  },
+  "aliases": {
+    "@root": ".",
+    "@app": "./server",
+    "@controllers": "./server/controllers",
+    "@models": "./server/models",
+    "@services": "./server/services",
+    "@js": "./public/js"
+  }
+}

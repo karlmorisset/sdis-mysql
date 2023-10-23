@@ -1,0 +1,46 @@
+<form class="form" id="add-comment" method="POST">
+  <div class="fields">
+    <div class="form__field">
+      <label for="comment" class="form__title">
+        Ajouter un commentaire
+      </label>
+      <textarea class="form__textarea" name="comment" id="comment"></textarea>
+    </div>
+    <input type="hidden" name="match" value="<%- match.id %>">
+
+    <div class="form__field">
+      <button class="form__button" type="submit">Soumettre</button>
+    </div>
+  </div>
+</form>
+
+
+<div class="comments">
+  <h2>Commentaires</h2>
+
+  <% if(typeof comments == "object" && comments.length > 0) { %>
+    <% comments.forEach(comment => { %>
+      <div class="comment" data-id="<%- comment.id %>">
+        <div>
+          <p>
+            <%- comment.author.email %> - <span class="date"><%- comment.createdAt %></span>
+          </p>
+          <p>
+            <%- comment.body %>
+          </p>
+        </div>
+
+        <% if (comment.author.id === user.id) { %>
+          <div class='inline-buttons'>
+            <form class='inline-form' data-verb="delete">
+              <input type="hidden" name="commentId" value="<%- comment.id %>">
+              <button type="submit" class="btn-icon btn-danger white"><i class="fa-solid fa-trash"></i></button>
+            </form>
+          </div>
+        <% } %>
+      </div>
+    <% }) %>
+  <% } else { %>
+    <div id="nocomments">Soyez le premier à poster un commentaire !</div>
+  <% } %>
+</div>
