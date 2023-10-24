@@ -3,21 +3,23 @@ import Match from '../../models/MySQL/Match';
 import User from '../../models/MySQL/User';
 import Comment from '../../models/MySQL/Comment';
 
+const castData = (rawData) => {
+  if (typeof rawData.formated === 'string') {
+    return {
+      ...rawData.dataValues,
+      formated: JSON.parse(rawData.formated),
+      played: !!rawData.played,
+    };
+  }
+
+  return rawData;
+};
+
 export const index = async (req, res) => {
   try {
     const rawMatches = await Match.findAll();
 
-    const castedMatches = rawMatches.map((m) => {
-      if (typeof m.formated === 'string') {
-        return {
-          ...m.dataValues,
-          formated: JSON.parse(m.formated),
-          played: !!m.played,
-        };
-      }
-
-      return m;
-    });
+    const castedMatches = rawMatches.map((m) => castData(m));
 
     res.status(200).render('pages/matches/index', { matches: castedMatches });
   } catch (error) {
@@ -30,16 +32,7 @@ export const show = async (req, res) => {
     const match = await Match.findByPk(req.params.id);
 
     if (match) {
-      let castedMatch = match;
-
-      if (typeof match.formated === 'string') {
-        castedMatch = {
-          ...match.dataValues,
-          formated: JSON.parse(match.formated),
-          played: !!match.played,
-        };
-      }
-
+      const castedMatch = castData(match);
       await Comment.sync();
       const comments = await Comment.findAll({
         where: {
@@ -73,13 +66,15 @@ export const show = async (req, res) => {
 
 export const getPlayedMatches = async (req, res) => {
   try {
-    const matches = await Match.findAll({
+    const rawMatches = await Match.findAll({
       where: {
         played: true,
       },
     });
 
-    res.status(200).render('pages/matches/played', { matches });
+    const castedMatches = rawMatches.map((m) => castData(m));
+
+    res.status(200).render('pages/matches/played', { matches: castedMatches });
   } catch (error) {
     ErrorService.record(error, res, 500);
   }
@@ -87,13 +82,15 @@ export const getPlayedMatches = async (req, res) => {
 
 export const getScheduledMatches = async (req, res) => {
   try {
-    const matches = await Match.findAll({
+    const rawMatches = await Match.findAll({
       where: {
         played: false,
       },
     });
 
-    res.status(200).render('pages/matches/played', { matches });
+    const castedMatches = rawMatches.map((m) => castData(m));
+
+    res.status(200).render('pages/matches/played', { matches: castedMatches });
   } catch (error) {
     ErrorService.record(error, res, 500);
   }
