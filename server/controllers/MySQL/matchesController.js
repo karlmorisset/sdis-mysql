@@ -28,7 +28,18 @@ export const index = async (req, res) => {
 export const show = async (req, res) => {
   try {
     const match = await Match.findByPk(req.params.id);
+
     if (match) {
+      let castedMatch = match;
+
+      if (typeof match.formated === 'string') {
+        castedMatch = {
+          ...match.dataValues,
+          formated: JSON.parse(match.formated),
+          played: !!match.played,
+        };
+      }
+
       await Comment.sync();
       const comments = await Comment.findAll({
         where: {
@@ -49,7 +60,7 @@ export const show = async (req, res) => {
       });
 
       return res.status(200).render('pages/matches/show', {
-        match,
+        match: castedMatch,
         comments,
       });
     }

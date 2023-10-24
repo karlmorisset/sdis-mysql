@@ -2,7 +2,7 @@ CREATE DATABASE rugby;
 
 USE rugby;
 
-CREATE TABLE `comments` (
+CREATE TABLE `Comments` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `body` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `createdAt` date DEFAULT NULL,
@@ -12,7 +12,7 @@ CREATE TABLE `comments` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
-CREATE TABLE `matches` (
+CREATE TABLE `Matches` (
   `id` int NOT NULL AUTO_INCREMENT,
   `team1` varchar(255) NOT NULL,
   `team2` varchar(255) NOT NULL,
@@ -27,7 +27,7 @@ CREATE TABLE `matches` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
-CREATE TABLE `users` (
+CREATE TABLE `Users` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `email` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
