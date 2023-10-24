@@ -168,3 +168,7 @@
 20/10/2023 - 00:27:47	Code: 500	"Cannot read properties of undefined (reading 'user')"
 20/10/2023 - 00:28:09	Code: 500	"Cannot read properties of undefined (reading 'user')"
 20/10/2023 - 00:28:18	Code: 500	"Cannot read properties of undefined (reading 'user')"
+23/10/2023 - 18:08:33	Code: 500	"Unexpected token o in JSON at position 1"
+24/10/2023 - 09:57:15	Code: 500	"Unexpected token o in JSON at position 1"
+24/10/2023 - 09:57:47	Code: 500	"Unexpected token o in JSON at position 1"
+24/10/2023 - 09:57:48	Code: 500	"Unexpected token o in JSON at position 1"

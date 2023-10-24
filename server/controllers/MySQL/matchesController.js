@@ -5,9 +5,21 @@ import Comment from '../../models/MySQL/Comment';
 
 export const index = async (req, res) => {
   try {
-    res
-      .status(200)
-      .render('pages/matches/index', { matches: await Match.findAll() });
+    const rawMatches = await Match.findAll();
+
+    const castedMatches = rawMatches.map((m) => {
+      if (typeof m.formated === 'string') {
+        return {
+          ...m.dataValues,
+          formated: JSON.parse(m.formated),
+          played: !!m.played,
+        };
+      }
+
+      return m;
+    });
+
+    res.status(200).render('pages/matches/index', { matches: castedMatches });
   } catch (error) {
     ErrorService.record(error, res, 500);
   }

@@ -54,11 +54,15 @@ const bindDeleteListener = (formEl) => {
   });
 };
 
-const addComment = async (newComment) => {
-  const commentsContainer = document.querySelector('.comments');
-  const comment = document.createElement('div');
-  const nocomments = document.getElementById('nocomments');
+const bindDeleteEventToFreshCommentNode = (newComment) => {
+  const newCommentNode = document.querySelector(
+    `[data-id="${newComment.id}"] [data-verb="delete"]`,
+  );
 
+  bindDeleteListener(newCommentNode);
+};
+
+const getCommentTemplate = async (newComment) => {
   const dataTemplate = `
     <div>
       <p>${newComment.author.email} - <span class="date">${newComment.createdAt}</span></p>
@@ -94,25 +98,34 @@ const addComment = async (newComment) => {
     `;
   }
 
+  return commentTemplate;
+};
+
+const addComment = async (newComment) => {
+  const commentsContainer = document.querySelector('.comments');
+  const comment = document.createElement('div');
+  const nocomments = document.getElementById('nocomments');
+
+  const commentTemplate = await getCommentTemplate(newComment);
+
   comment.innerHTML = commentTemplate;
 
   nocomments?.classList.add('not-empty');
 
   commentsContainer.appendChild(comment);
 
-  if (isConnectedUser) {
-    const newCommentNode = document.querySelector(
-      `[data-id="${newComment.id}"] [data-verb="delete"]`,
-    );
-
-    bindDeleteListener(newCommentNode);
-  }
+  bindDeleteEventToFreshCommentNode(newComment);
 };
 
+/**
+ * Écouteurs d'évènements socket.io
+ */
 socket.on('newComment', (data) => addComment(data.newComment));
 socket.on('removeComment', (data) => removeComment(data.deletedComment));
 
-// Ajout d'un commentaire
+/**
+ * Gestion du formulaire d'ajout d'un commentaire
+ */
 const addCommentForm = document.getElementById('add-comment');
 if (addCommentForm) {
   addCommentForm.addEventListener('submit', async (e) => {
@@ -132,9 +145,9 @@ if (addCommentForm) {
       if (!res.ok) throw new Error("Erreur lors de l'ajout du commentaire");
 
       const newComment = await res.json();
-      // addComment(newComment);
-      addCommentForm.reset();
 
+      //addComment(newComment);
+      addCommentForm.reset();
       socket.emit('newComment', { newComment });
     } catch (error) {
       console.warn(error);
@@ -142,6 +155,9 @@ if (addCommentForm) {
   });
 }
 
+/**
+ * Association de l'écouteur d'évènement sur tous les boutons delete
+ */
 document.querySelectorAll('[data-verb="delete"]').forEach(async (formEl) => {
   bindDeleteListener(formEl);
 });
